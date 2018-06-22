@@ -18,3 +18,4 @@
 	l.you = "YOU"
 	l.send = "Send"
 	l.st = "HIGH RISK OF BUGS"
+	l.errorchat = "Don´t have a text"

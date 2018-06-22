@@ -1,7 +1,7 @@
 -- API FOR SECURITY OF PROYECT  --
 -- IF THERE IS A PROBLEM CONTACT TO Guanj --
 API = {};
-API.version=13
+API.version=16
 API.stability="UNSTABLE"
 --EN ES
 API.lang = "ES"
@@ -84,12 +84,3 @@ return con
 end
 
 dofile(_SourceFolder.."\\AutoPlay\\Scripts\\lang\\lang-"..API.lang..".lua")
-
-
-
-function API.Changelog()
-API.LoadList("Slider_",true)
-API.DeleteAllObjects("tienda_")
-tpt="UI "..version_ui .." APP "..API.version.." - "..API.stability.."\n\n\n"..http.request(changelog)
-Paragraph.SetText("Paragraph8", tpt);
-end

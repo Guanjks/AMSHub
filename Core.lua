@@ -4,13 +4,17 @@
 SCR = {};
 
 tmr=
-[[if e_ID == 221 then
-API.CheckConection() 
+[[
+if e_ID == 221 then
 if chaton and name ~= nil then
-Chat.RefreshChat()
+Chat.Create()
+end
 end
 
+if e_ID == 227 then
+API.CheckConection()
 end
+
 
 if e_ID == 21 then
 if ESize == false then
@@ -29,25 +33,28 @@ Application.SetPageScript("Page1", "On Timer", tmr);
 
 
 function SCR.On_Show()
-
 dofile(_SourceFolder.."\\AutoPlay\\Scripts\\API.lua")
 dofile(_SourceFolder.."\\AutoPlay\\Scripts\\ui-ams\\Interfacer.lua")
 
 UIAMS.CreateControllers()
-
-
-Page.StartTimer(1000, 21);
-Page.StartTimer(5000, 221);
-
 API.CheckConection()
-
-
 dofile(_SourceFolder.."\\AutoPlay\\Scripts\\Core-UP.lua")
+
 UP.CheckUpdates()
+Page.StartTimer(10000, 227);
+
+dofile(_SourceFolder.."\\AutoPlay\\Scripts\\Home.lua")
+Page.StartTimer(500, 21);
+
+
+
+
+
 
 dofile(_SourceFolder.."\\AutoPlay\\Scripts\\Chat-UI.lua")
-dofile(_SourceFolder.."\\AutoPlay\\Scripts\\Menu.lua")
 dofile(_SourceFolder.."\\AutoPlay\\Scripts\\Hub.lua")
+
+dofile(_SourceFolder.."\\AutoPlay\\Scripts\\Menu.lua")
 
 
 end

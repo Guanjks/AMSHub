@@ -1,23 +1,22 @@
 Chat = {};
 SIZEeHeight=35
 function Chat.Create()
-	if con then
+	if con and chaton then
+	caption=http.request(host.."/AMSHub/chat/CHAT")
 	captionold=Paragraph.GetText("Paragraph8");
 	if captionold ~= caption then
 	caption=string.gsub(caption, name.."]", l.you.."]")
 	Paragraph.SetText("Paragraph8", caption.."\n\n\n");
 	Paragraph.SetScrollPos("Paragraph8", 9000, true);
 	end
+	else
+	
 	end
-end
-
-function Chat.RefreshChat()
-caption=http.request(host.."/AMSHub/chat/CHAT")
-Chat.Create()
 end
 
 
 function Chat.CreateUI()
+
 if name == nil then
 name = Dialog.Input(l.name, l.namep, l.tstname, MB_ICONQUESTION)
 end
@@ -25,7 +24,7 @@ end
 	btnProps = {};
 	btnProps.Width = 90
 	btnProps.Height = SIZEeHeight;	
-	btnProps.X = tblCon.Width-btnProps.Width+tblCon.X;
+	btnProps.X = tblCon.Width-btnProps.Width+tblCon.X-Theme.scrollsize;
 	btnProps.Y = tblCon.Y+tblCon.Height-SIZEeHeight;
 	btnProps.Alignment = ALIGN_CENTER;
 	btnProps.ButtonFile = "AutoPlay\\Buttons\\menu.btn";
@@ -54,23 +53,41 @@ Page.SetObjectScript("cha_input", "On Key", [[if e_Key == 13 then Page.ClickObje
 end
 
 function Chat.SendMessage(text)
-HTTP.Submit(host.."AMSHub/chat/chat.php", {name=name,text=text}, SUBMITWEB_POST, 20, 80, nil, nil);
-Chat.RefreshChat()
+if chaton then
+if text == "" then
+API.ShowPopup(l.errorchat)
+else
+HTTP.Submit(host.."AMSHub/chat/chat.php", {name=name,text=text}, SUBMITWEB_POST, 20, 80, nil, nil)
+Chat.Create()
+Input.SetText("cha_input", "")
+end
+end
 end
 
 
 function Chat.Sesion(t,send)
+API.LoadList("Slider_",t)
+chaton=t
+API.LoadList("Slider_",t)
+
 if t then
-chaton=true
-API.LoadList("Slider_",true)
+Page.StartTimer(3000, 221);
+
 Chat.CreateUI()
-Chat.RefreshChat()
+Chat.Create()
+
+if send == nil and name ~= nil then
+Chat.SendMessage(name.." Entro")
+end
+
 else
-if send == nil then
+
+if send == nil and name ~= nil then
 Chat.SendMessage(name.." Salio")
 end
-chaton=nil
 API.DeleteAllObjects("cha_")
+Paragraph.SetText("Paragraph8", "");
+
 end
 end
 

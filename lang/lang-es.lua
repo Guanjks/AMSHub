@@ -7,7 +7,7 @@
 	l.uploaded = "Este proyecto ya se ha subido."
 	l.enter = "Ingresa el nombre del menu correctamente."
 	l.dwnloadedk = "El "
-	l.dwnloaded = "se ha descargado y esta en la carpeta Descargas de AMSHub."
+	l.dwnloaded = " se ha descargado y esta en la carpeta Descargas de AMSHub."
 	l.uncompresing = "DESCOMPRIMIENDO"
 	l.restarting = "REINICIANDO"
 	l.updating = "Actualizando"
@@ -18,3 +18,4 @@
 	l.you = "TU"
 	l.send = "Enviar"
 	l.st = "ALTO RIESGO DE BUGS"
+	l.errorchat = "Nos falta texto"

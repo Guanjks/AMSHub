@@ -41,6 +41,7 @@ function UP.CheckUpdates()
 		if VERHUB > API.version then
 		
 		bar={X=700,Y=6,W=150,H=25}
+		
 
 		
 		tblParaxProps = {ResizeRight = true,ResizeLeft = true,Text = "",Enabled=true,X = bar.X,Y = bar.Y,Width = bar.W,Height = bar.H,Visible = true,BGStyle=BG_SOLID,BGColor=Math.HexColorToNumber("F5F5F5")};
@@ -62,7 +63,6 @@ function UPDATER_DownloadCallback(BSF, TBY, TR)
 	if TBY ~= 0 then
 		strProgress = l.updating.." ("..round(BSF/TBY * 100) .."%)"
 		Paragraph.SetSize("UPDATtE", BSF/TBY * bar.W,bar.H);
-
 		else
 		strProgress = ''
 	end

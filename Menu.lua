@@ -35,7 +35,7 @@ function Menu.CreateBtn(x, y, caption, b,enabled, submenu, functio)
 	if SIZEpWidth > 50 then
 	btnProps.Text = caption;
 	else
-	btnProps.Text = "  ";
+	btnProps.Text = " ";
 	end
 	
 	btnProps.Visible = true;
@@ -58,56 +58,54 @@ end
 
 function Menu.Action(b,functio)
 if con then
-Paragraph.SetText("Paragraph8", "");
-API.LoadList("Slider_",false)
-
-if Chaton ~= nil then
-Chat.Sesion(false,"no")
-Chaton=nil
-end
 
 
-if functio ~= "f" then
-if b == "Menu" then
-API.UploadProyect()
-elseif b == "Home" then
+
+if b == "Home" then
 API.DeleteAllObjects("tienda_")
-Home.Start(true)
-elseif b == "Chat" then
+Home.UI()
+else
+Home.Close()
+end
+if b == "Chat" then
 API.DeleteAllObjects("tienda_")
 Chat.Sesion(true)
-elseif b == "Upload" then
+else
+Chat.Sesion(false)
+end
+
+if b == "Upload" then
 API.UploadProyect()
-elseif b == "Changelog" then
+end
+if b == "Changelog" then
 API.Changelog()
 end
-else
 
 
 if Image.GetProperties("notBtn_"..b.."ICON").ImageFile == _SourceFolder.."\\AutoPlay\\Images\\"..Theme.Icons.."\\folder.png" then
 Image.Load("notBtn_"..b.."ICON", "AutoPlay\\Images\\"..Theme.Icons.."\\folder_open.png");
 end
 
-if afterb == nil or afterb ~= b then
-
+if functio ~= "f" and afterb == nil or afterb ~= b then
 cacher=string.lower(b)
 Hub.SetupHub(host.."AMSHub/caches/".. cacher.."-CACHE")
-end
 end
 
 lastb,afterb=afterb,b
 if lastb ~= nil and lastb ~= afterb and Image.GetProperties("notBtn_"..lastb.."ICON").ImageFile == _SourceFolder.."\\AutoPlay\\Images\\"..Theme.Icons.."\\folder_open.png" then
 Image.Load("notBtn_"..lastb.."ICON", "AutoPlay\\Images\\"..Theme.Icons.."\\folder.png");
 end
+
+
+
 else
 API.ShowPopup(l.errorconection)
 end
-
 end
 
 
 Menu.GetMenu()
-function Menu.Create()
+
 	tButtons = INIFile.GetSectionNames(menuf);
 	
 			NOTS = load(menuf)
@@ -115,9 +113,9 @@ function Menu.Create()
 				Menu.CreateBtn(POSFXe, POSFYe+i*SIZEpHeight, NOTS[B].caption, B,NOTS[B].enabled,NOTS[B].submenu,NOTS[B].functio);
 				Menu.CreateIcon(POSFXe+WidthIco, POSFYe+i*SIZEpHeight-HeightIco/2+SIZEpHeight/2 , B,NOTS[B].icon);
 			end
-end
-Menu.Create()
 
+
+Page.ClickObject("notBtn_Home");
 
 
 
