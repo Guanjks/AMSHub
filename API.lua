@@ -1,12 +1,23 @@
 -- API FOR SECURITY OF PROYECT  --
 -- IF THERE IS A PROBLEM CONTACT TO Guanj --
 API = {};
-API.version=16
+API.version=17
 API.stability="UNSTABLE"
---EN ES
-API.lang = "ES"
 --1 WHITE 2 BLACK
-API.theme = 1
+API.theme = 2
+
+
+function API.SetLenguage(sav_set)
+if sav_set == "load" then
+API.lang = INIFile.GetValue(_SourceFolder.."\\AutoPlay\\Docs\\AllConfig.ini", "Conf", "Lenguage");
+if API.lang == nil then API.lang = "ES" end
+dofile(_SourceFolder.."\\AutoPlay\\Scripts\\lang\\lang-"..API.lang..".lua")
+else
+INIFile.SetValue(_SourceFolder.."\\AutoPlay\\Docs\\AllConfig.ini", "Conf", "Lenguage", sav_set);
+API.Reboot()
+end
+end
+API.SetLenguage("load")
 
 function API.UploadProyect()
 Fileg = Dialog.FileBrowse(true, l.selectproyect, _DesktopFolder, l.uploadable.."|*.lua;*.apz;*.zip;|", "", "", false, true)
@@ -83,4 +94,3 @@ con =  HTTP.GetConnectionState().Connected
 return con
 end
 
-dofile(_SourceFolder.."\\AutoPlay\\Scripts\\lang\\lang-"..API.lang..".lua")

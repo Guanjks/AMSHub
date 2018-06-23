@@ -10,8 +10,6 @@ end
 Hub.Refresh()
 SWidthDwn=20
 SHeightDwn=20
-SWidthIco=31
-SHeightIco=31
 SWidthSize=100
 SHeightSize=30
 
@@ -31,7 +29,7 @@ end
 function Hub.Info(x, y, b, sze)
 tct=string.upper(extensio)
 if sze ~= nil then
-tct=tct.."   "..nicesize(sze)
+tct=tct.."	"..nicesize(sze)
 end	
 
 	

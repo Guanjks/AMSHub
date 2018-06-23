@@ -10,24 +10,24 @@ wit=Page.GetSize().Width
 
 function Home.UI()
 
-tbllen= {ColorDisabled = Math.HexColorToNumber(Theme.TextColor),ColorDown=Math.HexColorToNumber(Theme.TextColor),ColorNormal = Math.HexColorToNumber(Theme.TextColor),ColorHighlight =Math.HexColorToNumber(Theme.TextColor),ResizeBottom = true,ResizeRight = true,FontName = "Segoe Ui",FontSize=9,Text = "	LENGUAGES",X = conmenu.Width+conmenu.Y,Y = conmenu.Y*2,Alignment =ALIGN_LEFT,Width=wit/2-conmenu.Width,Height=30,ScrollVertical = SCROLL_ON,ScrollHorizontal = SCROLL_OFF,BGStyle=BG_SOLID,BGColor=Math.HexColorToNumber(Theme.BackgroundColor)};
+tbllen= {ColorDisabled = Math.HexColorToNumber(Theme.TextColor),ColorDown=Math.HexColorToNumber(Theme.TextColor),ColorNormal = Math.HexColorToNumber(Theme.TextColor),ColorHighlight =Math.HexColorToNumber(Theme.TextColor),ResizeBottom = true,ResizeRight = true,FontName = "Segoe Ui",FontSize=9,Text = "	"..l.actuallang..":"..API.lang,X = conmenu.Width+conmenu.Y,Y = conmenu.Y*2,Alignment =ALIGN_LEFT,Width=wit/2-conmenu.Width,Height=30,ScrollVertical = SCROLL_ON,ScrollHorizontal = SCROLL_OFF,BGStyle=BG_SOLID,BGColor=Math.HexColorToNumber(Theme.BackgroundColor)};
 Page.CreateObject(OBJECT_PARAGRAPH, "home_lenguage", tbllen);
 
 
-
-
-tbllend= {ColorDisabled = Math.HexColorToNumber(Theme.TextColor),ColorDown=Math.HexColorToNumber(Theme.TextColor),ColorNormal = Math.HexColorToNumber(Theme.TextColor),ColorHighlight =Math.HexColorToNumber(Theme.TextColor),ResizeBottom = true,ResizeRight = true,FontName = "Segoe Ui",FontSize=9,Text = "ESTADISTICAS",X = tbllen.X+tbllen.Width+conmenu.Y,Y = conmenu.Y*2,Alignment =ALIGN_CENTER,Width=wit/2-conmenu.Width,Height=170,ScrollVertical = SCROLL_ON,ScrollHorizontal = SCROLL_OFF,BGStyle=BG_SOLID,BGColor=Math.HexColorToNumber(Theme.BackgroundColor)};
+tbllend= {ColorDisabled = Math.HexColorToNumber(Theme.TextColor),ColorDown=Math.HexColorToNumber(Theme.TextColor),ColorNormal = Math.HexColorToNumber(Theme.TextColor),ColorHighlight =Math.HexColorToNumber(Theme.TextColor),ResizeBottom = true,ResizeRight = true,FontName = "Segoe Ui",FontSize=9,Text = "",X = tbllen.X+tbllen.Width+conmenu.Y,Y = conmenu.Y*2,Alignment =ALIGN_CENTER,Width=wit/2-conmenu.Width,Height=170,ScrollVertical = SCROLL_ON,ScrollHorizontal = SCROLL_OFF,BGStyle=BG_SOLID,BGColor=Math.HexColorToNumber(Theme.BackgroundColor)};
 Page.CreateObject(OBJECT_PARAGRAPH, "home_stadistics", tbllend);
 
 
-tblleRn= {ColorDisabled = Math.HexColorToNumber(Theme.TextColor),ColorDown=Math.HexColorToNumber(Theme.TextColor),ColorNormal = Math.HexColorToNumber(Theme.TextColor),ColorHighlight =Math.HexColorToNumber(Theme.TextColor),ResizeBottom = true,ResizeRight = true,FontName = "Segoe Ui",FontSize=9,Text = "INFO PC",X = tbllen.X,Y = tbllen.Y+40,Alignment =ALIGN_CENTER,Width=wit/2-conmenu.Width,Height=130,ScrollVertical = SCROLL_ON,ScrollHorizontal = SCROLL_OFF,BGStyle=BG_SOLID,BGColor=Math.HexColorToNumber(Theme.BackgroundColor)};
+tblleRn= {ColorDisabled = Math.HexColorToNumber(Theme.TextColor),ColorDown=Math.HexColorToNumber(Theme.TextColor),ColorNormal = Math.HexColorToNumber(Theme.TextColor),ColorHighlight =Math.HexColorToNumber(Theme.TextColor),ResizeBottom = true,ResizeRight = true,FontName = "Segoe Ui",FontSize=9,Text = "",X = tbllen.X,Y = tbllen.Y+40,Alignment =ALIGN_CENTER,Width=wit/2-conmenu.Width,Height=130,ScrollVertical = SCROLL_ON,ScrollHorizontal = SCROLL_OFF,BGStyle=BG_SOLID,BGColor=Math.HexColorToNumber(Theme.BackgroundColor)};
 Page.CreateObject(OBJECT_PARAGRAPH, "home_infopc", tblleRn);
 
 tbles = {ImageFile = "AutoPlay\\Images\\flags\\spain.png",Height = 16,Width = 24,Y = tbllen.Y+5,X = tbllen.X+tbllen.Width/2,Opacity=60,ResizeRight = true,ResizeLeft = true};
-Page.CreateObject(OBJECT_IMAGE, "home_english", tbles);
+Page.CreateObject(OBJECT_IMAGE, "home_spain", tbles);
 tblen = {ImageFile = "AutoPlay\\Images\\flags\\english.png",Height = 16,Width = 24,Y = tbllen.Y+5,X = tbllen.X+tbllen.Width/2+30,Opacity=60,ResizeRight = true,ResizeLeft = true};
-Page.CreateObject(OBJECT_IMAGE, "home_spain", tblen);
+Page.CreateObject(OBJECT_IMAGE, "home_english", tblen);
 
+Page.SetObjectScript("home_english", "On Click", "API.SetLenguage('EN')");
+Page.SetObjectScript("home_spain", "On Click", "API.SetLenguage('ES')");
 
 
 	Page.SetObjectScript("home_spain",  "On Enter", [[ONEL, IMG, vMINOPACIDAD = true, this, 60
@@ -35,7 +35,7 @@ Page.CreateObject(OBJECT_IMAGE, "home_spain", tblen);
 	Page.SetObjectScript("home_spain",  "On Leave", [[ONEL, IMG, vMINOPACIDAD = false, this, 60
 	IMGOPACIDAD ()]]);
 	
-		Page.SetObjectScript("home_english",  "On Enter", [[ONEL, IMG, vMINOPACIDAD = true, this, 60
+	Page.SetObjectScript("home_english",  "On Enter", [[ONEL, IMG, vMINOPACIDAD = true, this, 60
 	IMGOPACIDAD ()]]);
 	Page.SetObjectScript("home_english",  "On Leave", [[ONEL, IMG, vMINOPACIDAD = false, this, 60
 	IMGOPACIDAD ()]]);
@@ -57,14 +57,14 @@ end
 Processor = Registry.GetValue(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", "ProcessorNameString", true);
 
 Usuario = System.GetUserInfo();
-
-lua="INFO PC\n\nArquitectura:"..Arch.." Bits\rProccesador:"..Processor.."\n".."Memoria RAM: "..System.GetMemoryInfo().TotalRAM.." MB\nCreditos:Guanj,Cigx"
+lua=l.pcinfo.."\n\n"..l.arch..":"..Arch.." Bits\r"..l.Proc..":"..Processor.."\n"..l.ram..": "..System.GetMemoryInfo().TotalRAM.." MB\n"..l.cred..":Guanj,Cigx"
 
 
 Paragraph.SetText("home_infopc",lua);
 
-
-
+v=http.request(host.."AMSHub/chat/CHAT")
+tpt=l.stats.."\n"..l.chatsd..":"..select(2, v:gsub('\n', '\n'))-1 .."\n"..l.projects..":"..http.request(host.."AMSHub/apz/stats")
+Paragraph.SetText("home_stadistics", tpt);
 
 
 
