@@ -59,20 +59,22 @@ end
 function Menu.Action(b,functio)
 if con then
 
-
-
-if b == "Home" then
-API.DeleteAllObjects("tienda_")
-Home.UI()
-else
-Home.Close()
-end
 if b == "Chat" then
 API.DeleteAllObjects("tienda_")
 Chat.Sesion(true)
 else
 Chat.Sesion(false)
 end
+
+if b == "Home" then
+API.DeleteAllObjects("tienda_")
+Home.UI()
+else
+if b ~= "Upload" then
+Home.Close()
+end
+end
+
 
 if b == "Upload" then
 API.UploadProyect()

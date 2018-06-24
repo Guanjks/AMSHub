@@ -81,12 +81,12 @@ Chat.SendMessage(name.." Entro")
 end
 
 else
-
+Paragraph.SetText("Paragraph8", "");
 if send == nil and name ~= nil then
 Chat.SendMessage(name.." Salio")
 end
 API.DeleteAllObjects("cha_")
-Paragraph.SetText("Paragraph8", "");
+
 
 end
 end

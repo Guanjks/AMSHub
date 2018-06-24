@@ -32,6 +32,6 @@ function EventControllers(Event, Object, Theme, Back)
 end
 
 cuadrant = Window.GetSize(Application.GetWndHandle());
-Theme = {Icons="white",TextColor="ffffff",HubColor= "262626",BackgroundColor= "262626",BackgroundColorList = "434343" ,scroll= true,scrollsize=7,menusize=200};
+Theme = {Icons="white",TextColor="FFFFFF",HubColor= "262626",BackgroundColor= "262626",BackgroundColorList = "434343" ,scroll= true,scrollsize=7,menusize=200};
 
 CreateUI()

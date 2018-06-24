@@ -28,3 +28,4 @@
 	l.chatsd = "Ultimos chats"
 	l.pcinfo = "INFORMACION PC"
 	l.actuallang = "LENGUAJE"
+	l.news = "News"

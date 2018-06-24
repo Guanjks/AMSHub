@@ -273,10 +273,6 @@ local function SliderSetPos(cSliderName, X, Y)
 			tPos = Image.GetPos(cSliderPrgName);
 			Image.SetPos(cSliderPrgName, tPos.X + nXOffset, tPos.Y + nYOffset);
 		end
-		if (cSliderLinName ~= "") then
-			tPos = Image.GetPos(cSliderLinName);
-			Image.SetPos(cSliderLinName, tPos.X + nXOffset, tPos.Y + nYOffset);
-		end
 		Page.ClickObject(cSliderBtnName);
 	end
 end
@@ -307,6 +303,8 @@ if DialogEx.GetWndHandle() == -1 then
 	if (tElementsName) then
 		local cSliderBarName = tElementsName.Bar;
 		local cSliderBtnName = tElementsName.Btn;
+		local cSliderPrgName = tElementsName.Prg;
+
 		local tRange = SliderEx.GetRange(cSliderName);
 		local tPrpsSliderBar = Button.GetProperties(cSliderBarName);
 		local tPrpsSliderBtn = Button.GetProperties(cSliderBtnName);	
@@ -327,6 +325,9 @@ if DialogEx.GetWndHandle() == -1 then
 			if (Position < tRange.End) then Position = tRange.End; end
 		end
 		local nOffsetRange = Position - tRange.Start;
+
+		
+		
 		if (nOrientation == HORIZONTAL) then
 			if (tPrpsSliderBar.Width > tPrpsSliderBtn.Width) then
 				local nX = tPrpsSliderBar.X + (nOffsetRange * (tPrpsSliderBar.Width - tPrpsSliderBtn.Width) / (tRange.End - tRange.Start));	-- ????? ???????
@@ -372,10 +373,19 @@ function MouseButton(m_Type, m_X, m_Y)
 			if (tElementsName) then
 				local cSliderBarName = tElementsName.Bar;
 				local cSliderBtnName = tElementsName.Btn;
+				local cSliderPrgName = tElementsName.Prg;
 				local tPrpsSliderBar = Button.GetProperties(cSliderBarName);
 				local tPrpsSliderBtn = Button.GetProperties(cSliderBtnName);	
 				local m_pos = System.GetMousePosition(true);
 				local tMouseOnSlider = MouseOnSlider(_cEnterName);
+			
+			tImgPrps=Image.GetProperties(cSliderPrgName);
+			if (nOrientation == HORIZONTAL) then
+				Image.SetSize(cSliderPrgName, tPrpsSliderBtn.X - tImgPrps.X + tPrpsSliderBtn.Width/2, tImgPrps.Height);
+			else
+				Image.SetSize(cSliderPrgName, tImgPrps.Width, tPrpsSliderBtn.Y - tImgPrps.Y + tPrpsSliderBtn.Height/2);
+			end
+				
 				if (tMouseOnSlider.Btn) then
 					_lClickSliderBtn = true;
 					_cActiveSliderName = _cEnterName;
@@ -426,12 +436,17 @@ function MouseMove(m_X, m_Y)
 		if (tElementsName) then
 			local cSliderBtnName = tElementsName.Btn;
 			local cSliderBarName = tElementsName.Bar;
+			local cSliderPrgName = tElementsName.Prg;
 			local tPos = SliderEx.GetPos(_cActiveSliderName);
 			local tPrpsSliderBar = Button.GetProperties(cSliderBarName);
 			local tPrpsSliderBtn = Button.GetProperties(cSliderBtnName);
 			local nLen = SliderEx.GetLength(_cActiveSliderName);
 			local nOrientation = SliderEx.GetOrientation(_cActiveSliderName);
+			tImgPrps=Image.GetProperties(cSliderPrgName);
+
+			
 			if (nOrientation == HORIZONTAL) then
+			Image.SetSize(cSliderPrgName, tPrpsSliderBtn.X - tImgPrps.X + tPrpsSliderBtn.Width/2, tImgPrps.Height);
 				if (tPrpsSliderBar.Width > tPrpsSliderBtn.Width) then
 					local nStart = tPos.X;
 					local nEnd = tPos.X + nLen - tPrpsSliderBtn.Width;
@@ -444,6 +459,7 @@ function MouseMove(m_X, m_Y)
 					end
 				end
 			else
+			Image.SetSize(cSliderPrgName, tImgPrps.Width, tPrpsSliderBtn.Y - tImgPrps.Y + tPrpsSliderBtn.Height/2);
 				if (tPrpsSliderBar.Height > tPrpsSliderBtn.Height) then
 					local nStart = tPos.Y;
 					local nEnd = tPos.Y + nLen - tPrpsSliderBtn.Height;

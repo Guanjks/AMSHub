@@ -7,7 +7,6 @@ POSMXe=tblCon.X
 POSMYe=tblCon.Y
 end
 
-Hub.Refresh()
 SWidthDwn=20
 SHeightDwn=20
 SWidthSize=100
