@@ -27,22 +27,16 @@ end
 
 function API.UploadCore(archivo_ruta)
 			category = string.lower(Dialog.Input(l.categoryf, l.category, l.functions, MB_ICONQUESTION))
+			if category ~= "CANCEL" then
 				FileInformatin = String.SplitPath(archivo_ruta);
 				jj=host.."AMSHub/caches/uploads/"..FileInformatin.Filename..FileInformatin.Extension
 				state=HTTP.Submit(host.."AMSHub/caches/ini.php", {category=category.."-CACHE",filename=FileInformatin.Filename,url=jj,size=File.GetSize(archivo_ruta)}, SUBMITWEB_POST, 20, 80, nil, nil);
 				API.ShowPopup(state);	
 				if "Esto ya esta subido." ~= state and "Esta categoria no existe." ~= state then
 				DLL.CallFunction("AutoPlay\\Docs\\WebUploadPabloko.dll", "UploadFile", "\""..host.."AMSHub/caches/archivo.php\",\""..archivo_ruta.."\"", DLL_RETURN_TYPE_INTEGER, DLL_CALL_STDCALL);			
-				else
-				API.ShowPopup(state);	
 				end
+			end
 end
-
-
-
-
-
-
 
 
 function API.DeleteAllObjects(to)

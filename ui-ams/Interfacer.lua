@@ -17,7 +17,7 @@ tblParaProps = {Enabled = false,ColorNormal = Math.HexColorToNumber("FF0000"),Fo
 Page.CreateObject(OBJECT_PARAGRAPH, "stability", tblParaProps);
 end
 if Theme.scroll then plus=Theme.scrollsize else plus=0 end
-tblCon= {ColorDisabled = Math.HexColorToNumber(Theme.TextColor),ColorNormal = Math.HexColorToNumber(Theme.TextColor),ColorHighlight =Math.HexColorToNumber(Theme.TextColor),ColorDown=Math.HexColorToNumber(Theme.TextColor),ResizeBottom = true,Enabled = true,ResizeRight = true,FontName = "Segoe Ui",FontSize=9,Text = "",X = conmenu.Width,Y = conmenu.Y,Alignment =ALIGN_CENTER,Width=wit-conmenu.Width,Height=577,ScrollVertical = SCROLL_ON,ScrollHorizontal = SCROLL_OFF,BGStyle=BG_SOLID,BGColor=Math.HexColorToNumber(Theme.BackgroundColorList)};
+tblCon= {ColorDisabled = Math.HexColorToNumber(Theme.TextColor),ColorNormal = Math.HexColorToNumber(Theme.TextColor),ColorHighlight =Math.HexColorToNumber(Theme.TextColor),ColorDown=Math.HexColorToNumber(Theme.TextColor),ResizeBottom = true,ResizeRight = true,Enabled = true,FontName = "Segoe Ui",FontSize=9,Text = "",X = conmenu.Width,Y = conmenu.Y,Alignment =ALIGN_CENTER,Width=wit-conmenu.Width,Height=577,ScrollVertical = SCROLL_ON,ScrollHorizontal = SCROLL_OFF,BGStyle=BG_SOLID,BGColor=Math.HexColorToNumber(Theme.BackgroundColorList)};
 Page.CreateObject(OBJECT_PARAGRAPH, "Paragraph8", tblCon);
 	
 	

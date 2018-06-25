@@ -57,10 +57,7 @@ function Menu.CreateIcon(x, y, b,icon)
 end
 
 function Menu.Action(b,functio)
-if con then
-
 if b == "Chat" then
-API.DeleteAllObjects("tienda_")
 Chat.Sesion(true)
 else
 Chat.Sesion(false)
@@ -70,7 +67,7 @@ if b == "Home" then
 API.DeleteAllObjects("tienda_")
 Home.UI()
 else
-if b ~= "Upload" then
+if b ~= "Upload" and name ~= "CANCEL" or functio == "f" then
 Home.Close()
 end
 end
@@ -98,12 +95,9 @@ if lastb ~= nil and lastb ~= afterb and Image.GetProperties("notBtn_"..lastb.."I
 Image.Load("notBtn_"..lastb.."ICON", "AutoPlay\\Images\\"..Theme.Icons.."\\folder.png");
 end
 
+end
 
 
-else
-API.ShowPopup(l.errorconection)
-end
-end
 
 
 Menu.GetMenu()

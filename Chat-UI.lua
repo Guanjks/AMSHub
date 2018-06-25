@@ -17,9 +17,6 @@ end
 
 function Chat.CreateUI()
 
-if name == nil then
-name = Dialog.Input(l.name, l.namep, l.tstname, MB_ICONQUESTION)
-end
 
 	btnProps = {};
 	btnProps.Width = 90
@@ -46,10 +43,6 @@ Page.CreateObject(OBJECT_INPUT, "cha_input", tblInputProps);
 
 Page.SetObjectScript("cha_buton", "On Click", "Chat.SendMessage(Input.GetText('cha_input'))");
 Page.SetObjectScript("cha_input", "On Key", [[if e_Key == 13 then Page.ClickObject("cha_buton") end]]);
-
-
-
-
 end
 
 function Chat.SendMessage(text)
@@ -66,28 +59,38 @@ end
 
 
 function Chat.Sesion(t,send)
-API.LoadList("Slider_",t)
-chaton=t
-API.LoadList("Slider_",t)
+
 
 if t then
+name = Dialog.Input(l.name, l.namep, l.tstname, MB_ICONQUESTION)
+
+if name ~= "CANCEL" then
 Page.StartTimer(3000, 221);
 
 Chat.CreateUI()
 Chat.Create()
+gj=" Entro"
 
-if send == nil and name ~= nil then
-Chat.SendMessage(name.." Entro")
 end
 
 else
-Paragraph.SetText("Paragraph8", "");
-if send == nil and name ~= nil then
-Chat.SendMessage(name.." Salio")
-end
 API.DeleteAllObjects("cha_")
-
-
+gj=" Salio"
 end
+
+
+
+
+if name ~= "CANCEL" then
+
+if send == nil and name ~= nil then
+Chat.SendMessage(name..gj)
+end
+API.DeleteAllObjects("tienda_")
+API.LoadList("Slider_",t)
+chaton=t
+end
+Paragraph.SetText("Paragraph8", "");
+
 end
 

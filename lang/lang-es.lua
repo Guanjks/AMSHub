@@ -29,3 +29,4 @@
 	l.pcinfo = "INFORMACION PC"
 	l.actuallang = "LENGUAJE"
 	l.news = "News"
+	l.noallowed = "ARCHIVO NO ADMITIDO"

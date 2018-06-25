@@ -29,3 +29,4 @@
 	l.pcinfo = "INFO PC"
 	l.actuallang = "LANGUAGE"
 	l.news = "Nuevo"
+	l.noallowed = "NON ADMITTED FILE"

@@ -17,16 +17,11 @@ end
 
 
 if e_ID == 21 then
-if ESize == false then
-Paragraph.SetEnabled("Paragraph2", false);
-else
-Paragraph.SetEnabled("Paragraph2", true);
-end
-end     
+Paragraph.SetEnabled("Paragraph2", ESize);
+end 
+    
 if e_ID == 10 then
-	Page.StopTimer(10)
 	arrastrarysoltar ()
-	Page.StartTimer(200, 10)
 end
 
 
@@ -37,55 +32,6 @@ Application.SetPageScript("Page1", "On Timer", tmr);
 
 
 function SCR.On_Show()
-Application.LoadActionPlugin("AutoPlay\\Docs\\dragdrop.lmd")
-DragAndDrop.SetDataFormat(DataFormat.FileDrop)
-DragAndDrop.Start(Application.GetWndHandle())
-Page.StartTimer(200, 10)
-
-function arrastrarysoltar ()
-	if dataFormat then
-		if DragAndDrop.GetEventType () == "DragOver" then
-		Paragraph.SetText("home_upload","\n\n\n\SUELTALO!");
-		Image.Load("home_blured", "AutoPlay\\Images\\blurred_green.jpg")
-		else
-		Paragraph.SetText("home_upload",gtp);
-		Image.Load("home_blured", "AutoPlay\\Images\\blurred_colors.jpg")
-		end
-		
-		data = DragAndDrop.GetDataObject();
-		
-		if (dataFormat == "FileDrop") then
-		for i, v in pairs(data) do
-		archivo = String.SplitPath(v)
-     	archivo_ruta = archivo.Drive..archivo.Folder..archivo.Filename..archivo.Extension
-
-			if archivo.Extension == ".apz" or archivo.Extension == ".zip" or archivo.Extension == ".lua" then
-
-	
-			API.UploadCore(archivo_ruta)
-			
-
-			if index then
-				Page.StopTimer(10)
-				DragAndDrop.Stop (Application.GetWndHandle())
-				Application.ExitScript()
-			end
-			
-			end
-		break
-	end
-	end
-end
-end
-
-
-
-
-
-
-
-
-
 
 dofile(_SourceFolder.."\\AutoPlay\\Scripts\\API.lua")
 dofile(_SourceFolder.."\\AutoPlay\\Scripts\\ui-ams\\Interfacer.lua")
